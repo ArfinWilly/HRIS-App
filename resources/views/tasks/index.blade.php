@@ -45,8 +45,8 @@
                                 <th>Description</th>
                                 <th>Assigned To</th>
                                 <th>Due Date</th>
-                                <th colspan="2">Status</th>
-                                <th>Aksi</th>
+                                <th>Status</th>
+                                <th colspan="2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,6 +80,9 @@
                                     </td>
 
                                     <td>
+                                        <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-sm btn-info">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
                                         <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
