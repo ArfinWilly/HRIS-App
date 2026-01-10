@@ -56,8 +56,8 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a href="" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('employees.*') ? 'active' : '' }}">
+                    <a href="{{ route('employees.index') }}" class='sidebar-link'>
                         <i class="bi bi-people-fill"></i>
                         <span>Employee</span>
                     </a>
@@ -96,27 +96,6 @@
                         <span>Leave</span>
                     </a>
                 </li>
-
-                {{-- @if (Auth::user()->role->role_name == 'admin')
-                    <li class="sidebar-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
-                        <a href="{{ route('users.index') }}" class='sidebar-link'>
-                            <i class="bi bi-people-fill"></i>
-                            <span>Manajemen Karyawan</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="{{ route('roles.index') }}" class='sidebar-link'>
-                            <i class="bi bi-person-fill-gear"></i>
-                            <span>Manajemen Role</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="{{ route('categories.index') }}" class='sidebar-link'>
-                            <i class="bi bi-tags-fill"></i>
-                            <span>Manajemen Kategori</span>
-                        </a>
-                    </li>
-                @endif --}}
 
                 <li class="sidebar-item">
                     <form action="{{ route('logout') }}" method="POST">
