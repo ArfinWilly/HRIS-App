@@ -63,8 +63,8 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a href="" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('departments.*') ? 'active' : '' }}">
+                    <a href="{{ route('departments.index') }}" class='sidebar-link'>
                         <i class="bi bi-briefcase"></i>
                         <span>Department</span>
                     </a>
