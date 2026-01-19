@@ -2,6 +2,11 @@
 
 @section('title', 'Employee')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/extensions/simple-datatables/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/compiled/css/table-datatable.css') }}">
+@endsection
+
 @section('content')
 
     <div class="page-heading">
