@@ -1,13 +1,13 @@
 @extends('layouts.dashboard.main')
 
-@section('title', 'Tambah Employee')
+@section('title', 'Edit Employee')
 
 @section('content')
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Tambah Data Employee</h3>
-                <p class="text-subtitle text-muted">Silahkan Isi Data Employee</p>
+                <h3>Edit Data Employee</h3>
+                <p class="text-subtitle text-muted">Silahkan Perbarui Data Employee</p>
             </div>
         </div>
     </div>
@@ -24,32 +24,33 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <form action="{{ route('employees.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('employees.update', $employee->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="from-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="fullname">Fullname</label>
-                                <input type="text" name="fullName" class="form-control" id="fullname" value="{{ old('fullName') }}"
+                                <input type="text" name="fullName" class="form-control" id="fullname" value="{{ old('fullName') ?? $employee->fullName }}"
                                     placeholder="Masukkan Nama Lengkap">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" name="email" class="form-control" id="email" value="{{ old('email') }}"
+                                <input type="text" name="email" class="form-control" id="email" value="{{ old('email') ?? $employee->email }}"
                                     placeholder="Masukkan Email">
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumber">Nomor HP</label>
-                                <input type="text" name="phoneNumber" class="form-control" id="phoneNumber" value="{{ old('phoneNumber') }}"
+                                <input type="text" name="phoneNumber" class="form-control" id="phoneNumber" value="{{ old('phoneNumber') ?? $employee->phoneNumber }}"
                                     placeholder="Masukkan Nomor HP">
                             </div>
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-select">
                                     <option value="" disabled selected>-- Pilih Status --</option>
-                                    <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
-                                    <option value="in-active" {{ old('status') == 'in-active' ? 'selected' : '' }}>In-active</option>
+                                    <option value="active" {{ old('status') == 'active' || $employee->status == 'active' ? 'selected' : '' }}>Active</option>
+                                    <option value="in-active" {{ old('status') == 'in-active' || $employee->status == 'in-active' ? 'selected' : '' }}>In-active</option>
                                 </select>
                             </div>
 
@@ -58,7 +59,7 @@
                                 <select name="roleId" id="role" class="form-select">
                                     <option value="" disabled selected>-- Pilih Role --</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}" {{ old('roleId') == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
+                                        <option value="{{ $role->id }}" {{ old('roleId') == $role->id || $employee->roleId == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -67,13 +68,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="birthDate">Tanggal Lahir</label>
-                                <input type="date" name="birthDate" class="date form-control" id="birthDate" value="{{ old('birthDate') }}"
+                                <input type="date" name="birthDate" class="date form-control" id="birthDate" value="{{ old('birthDate') ?? $employee->birthDate }}"
                                     placeholder="Masukkan Tanggal Lahir">
                             </div>
 
                             <div class="form-group">
                                 <label for="hireDate">Tanggal Masuk</label>
-                                <input type="date" name="hireDate" class="date form-control" id="hireDate" value="{{ old('hireDate') }}"
+                                <input type="date" name="hireDate" class="date form-control" id="hireDate" value="{{ old('hireDate') ?? $employee->hireDate }}"
                                     placeholder="Masukkan Tanggal Masuk">
                             </div>
                             
@@ -82,13 +83,13 @@
                                 <select name="departmentId" id="department" class="form-select">
                                     <option value="" disabled selected>-- Pilih Department --</option>
                                     @foreach ($departments as $department)
-                                    <option value="{{ $department->id }}" {{ old('departmentId') == $department->id ? 'selected' : '' }}>{{ $department->name }}</option>
+                                    <option value="{{ $department->id }}" {{ old('departmentId') == $department->id || $employee->departmentId == $department->id ? 'selected' : '' }}>{{ $department->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="salary">Gaji</label>
-                                <input type="number" name="salary" class="form-control" id="salary" value="{{ old('salary') }}"
+                                <input type="text" name="salary" class="form-control" id="salary" value="{{ old('salary') ?? $employee->salary }}"
                                     placeholder="Masukkan Gaji">
                             </div>
 

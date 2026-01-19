@@ -2,18 +2,6 @@
 
 @section('title', 'Employee')
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('assets/extensions/simple-datatables/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/compiled/css/table-datatable.css') }}">
-    <style>
-        .truncate {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
-@endsection
-
 @section('content')
 
     <div class="page-heading">
@@ -52,8 +40,6 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
-                                    <th>Ulang Tahun</th>
-                                    <th>Tanggal Masuk</th>
                                     <th>Department</th>
                                     <th>Role</th>
                                     <th>Status</th>
@@ -67,9 +53,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $employee->fullName }}</td>
                                         <td>{{ $employee->email }}</td>
-                                        <td class="truncate">{{ $employee->phoneNumber }}</td>
-                                        <td class="truncate">{{ $employee->birthDate }}</td>
-                                        <td class="truncate">{{ $employee->hireDate }}</td>
+                                        <td class="truncate">{{ $employee->phoneNumber ?? '-' }}</td>
                                         <td>{{ $employee->department->name }}</td>
                                         <td>{{ $employee->role->title }}</td>
                                         <td>
@@ -79,12 +63,12 @@
                                                 <span class="text-danger">Inactive</span>
                                             @endif
                                         </td>
-                                        <td>{{ $employee->salary }}</td>
+                                        <td>{{ 'Rp.' . number_format($employee->salary, 0, ',', '.') }}</td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-info">
+                                            <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-sm btn-info">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a href="" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <form action="{{ route('employees.destroy' , $employee->id) }}" method="POST" class="d-inline">
