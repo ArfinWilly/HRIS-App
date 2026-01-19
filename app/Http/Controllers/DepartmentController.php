@@ -80,7 +80,7 @@ class DepartmentController extends Controller
         $department = Department::findOrFail($id);
         $department->update($validatedData);
 
-        return redirect()->route('departments.index')->with('success', 'Department created successfully.');
+        return redirect()->route('departments.index')->with('success', 'Department update successfully.');
     }
 
     /**
