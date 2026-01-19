@@ -70,8 +70,8 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a href="" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('roles.*') ? 'active' : '' }}">
+                    <a href="{{ route('roles.index') }}" class='sidebar-link'>
                         <i class="bi bi-person-fill-gear"></i>
                         <span>Roles</span>
                     </a>

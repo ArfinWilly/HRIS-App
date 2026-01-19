@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DashboardController;
@@ -17,3 +18,5 @@ Route::get('/tasks/{id}/pending', [TaskController::class, 'pending'])->name('tas
 Route::resource('/employees', EmployeeController::class);
 
 Route::resource('/departments', DepartmentController::class);
+
+Route::resource('/roles', RoleController::class);
