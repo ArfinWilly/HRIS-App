@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 
@@ -20,3 +21,5 @@ Route::resource('/employees', EmployeeController::class);
 Route::resource('/departments', DepartmentController::class);
 
 Route::resource('/roles', RoleController::class);
+
+Route::resource('/presences', PresenceController::class);

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Presence extends Model
 {
     use SoftDeletes, HasFactory ;
+
+    protected $table = 'presence';
     
     protected $fillable = [
         'employeeId',
