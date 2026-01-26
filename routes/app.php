@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PayrollsController;
 use App\Http\Controllers\PresenceController;
@@ -26,3 +27,5 @@ Route::resource('/roles', RoleController::class);
 Route::resource('/presences', PresenceController::class);
 
 Route::resource('/payrolls', PayrollsController::class);
+
+Route::resource('/leaves', LeaveController::class);

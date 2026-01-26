@@ -11,9 +11,9 @@ class Leave extends Model
     
     protected $fillable = [
         'employeeId',
+        'leaveReason',
         'startDate',
         'endDate',
-        'reason',
         'status',
     ];
     protected $dates = ['deleted_at'] ;
