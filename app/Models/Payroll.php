@@ -9,6 +9,8 @@ class Payroll extends Model
 {
     use SoftDeletes ;
 
+    protected $table = 'payroll';
+
     protected $fillable = [
         'employeeId',
         'salary',
