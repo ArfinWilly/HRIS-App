@@ -90,8 +90,8 @@
                         <span>Payroll</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs('leaves.*') ? 'active' : '' }}">
-                    <a href="{{ route('leaves.index') }}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('leave-requests.*') ? 'active' : '' }}">
+                    <a href="{{ route('leave-requests.index') }}" class='sidebar-link'>
                         <i class="bi bi-shift-fill"></i>
                         <span>Leave</span>
                     </a>

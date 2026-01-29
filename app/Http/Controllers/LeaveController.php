@@ -14,7 +14,7 @@ class LeaveController extends Controller
     public function index()
     {
         $leaves = Leave::with('employee')->get();
-        return view('leaves.index', compact('leaves'));
+        return view('leave-requests.index', compact('leaves'));
     }
 
     /**
@@ -23,7 +23,7 @@ class LeaveController extends Controller
     public function create()
     {
         $employees = Employee::all();
-        return view('leaves.create', compact('employees'));
+        return view('leave-requests.create', compact('employees'));
     }
 
     /**
@@ -49,7 +49,7 @@ class LeaveController extends Controller
 
         Leave::create($validatedData + ['status'=> 'pending']);
 
-        return redirect()->route('leaves.index')->with('success', 'Leave request submitted successfully.');
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request submitted successfully.');
     }
 
     /**
@@ -67,7 +67,7 @@ class LeaveController extends Controller
     {
         $leave = Leave::findOrFail($id);
         $employees = Employee::all();
-        return view('leaves.edit', compact('leave', 'employees'));
+        return view('leave-requests.edit', compact('leave', 'employees'));
     }
 
     /**
@@ -94,7 +94,7 @@ class LeaveController extends Controller
         ]);
 
         $leave->update($validatedData);
-        return redirect()->route('leaves.index')->with('success', 'Leave request updated successfully.');
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request updated successfully.');
     }
 
     /**
@@ -104,6 +104,22 @@ class LeaveController extends Controller
     {
         $leave = Leave::findOrFail($id);
         $leave->delete();
-        return redirect()->route('leaves.index')->with('success', 'Leave request deleted successfully.');
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request deleted successfully.');
+    }
+
+    public function confirmed(String $id)
+    {
+        $leave = Leave::findOrFail($id);
+        $leave->update(['status' => 'confirmed']);
+
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request confirmed successfully.');
+    }
+
+    public function rejected(String $id)
+    {
+        $leave = Leave::findOrFail($id);
+        $leave->update(['status' => 'rejected']);
+
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request rejected successfully.');
     }
 }

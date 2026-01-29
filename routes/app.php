@@ -28,4 +28,6 @@ Route::resource('/presences', PresenceController::class);
 
 Route::resource('/payrolls', PayrollsController::class);
 
-Route::resource('/leaves', LeaveController::class);
+Route::resource('/leave-requests', LeaveController::class);
+Route::get('/leave-requests/{id}/confirmed', [LeaveController::class, 'confirmed'])->name('leave-requests.confirmed');
+Route::get('/leave-requests/{id}/rejected', [LeaveController::class, 'rejected'])->name('leave-requests.rejected');

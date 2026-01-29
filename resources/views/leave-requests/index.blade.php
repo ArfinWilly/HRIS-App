@@ -19,7 +19,7 @@
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <a href="{{ route('leaves.create') }}" class="btn btn-primary float-start float-lg-end">
+                            <a href="{{ route('leave-requests.create') }}" class="btn btn-primary float-start float-lg-end">
                                 <i class="bi bi-plus-lg"></i>
                                 Tambah Perizinan Cuti
                             </a>
@@ -45,6 +45,7 @@
                                 <th>Alasan Cuti</th>
                                 <th>Mulai Cuti</th>
                                 <th>Akhir Cuti</th>
+                                <th>Status</th>
                                 <th colspan="2">Aksi</th>
                             </tr>
                         </thead>
@@ -52,18 +53,38 @@
                             @foreach ($leaves as $leave)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $leave->employee->fullName ?? '-'}}</td>
+                                    <td>{{ $leave->employee->fullName ?? '-' }}</td>
                                     <td>{{ $leave->leaveReason }}</td>
                                     <td>{{ $leave->startDate }}</td>
                                     <td>{{ $leave->endDate }}</td>
                                     <td>
-                                        <span class="text-success">{{ $leave->status }}</span>
+                                        @if ($leave->status == 'confirmed')
+                                            <span class="text-success">{{ $leave->status }}</span>
+                                        @elseif ($leave->status == 'rejected')
+                                            <span class="text-danger">{{ $leave->status }}</span>
+                                        @else
+                                            <span class="text-warning">{{ $leave->status }}</span>
+                                        @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('leaves.edit' , $leave->id) }}" class="btn btn-sm btn-primary">
+                                        @if ($leave->status == 'rejected' || $leave->status == 'pending')
+                                            <a href="{{ route('leave-requests.confirmed', $leave->id) }}"
+                                                class="btn btn-sm btn-success">
+                                                <i class="bi bi-check-circle"></i>
+                                            </a>
+                                        @elseif ($leave->status == 'confirmed' || $leave->status == 'pending')
+                                            <a href="{{ route('leave-requests.rejected', $leave->id) }}"
+                                                class="btn btn-sm btn-danger">
+                                                <i class="bi bi-x-circle"></i>
+                                            </a>
+                                        @endif
+
+                                        <a href="{{ route('leave-requests.edit', $leave->id) }}"
+                                            class="btn btn-sm btn-primary">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <form action="{{ route('leaves.destroy' , $leave->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('leave-requests.destroy', $leave->id) }}" method="POST"
+                                            class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger"
