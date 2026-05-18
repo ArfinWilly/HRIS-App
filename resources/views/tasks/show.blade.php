@@ -21,19 +21,6 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            {{-- <p><strong>Dibuat Pada:</strong> {{ $order->created_at->format('d-m-Y H:i') }}</p>
-                            <p><strong>Nama Pelanggan:</strong> {{ $order->user->fullname }}</p>
-                            <p><strong>Status:</strong>
-                                <span
-                                    class="badge {{ $order->status == 'settlement' ? 'bg-success' : ($order->status == 'pending' ? 'bg-warning' : 'bg-primary') }}">
-                                    {{ $order->status }}
-                                </span>
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p><strong>No. Meja:</strong> {{ $order->table_number }}</p>
-                            <p><strong>Metode Pembayaran:</strong> {{ $order->payment_method }}</p>
-                            <p><strong>Catatan:</strong> {{ $order->notes ?? '-' }}</p> --}}
                             <p><strong>Title:</strong> {{ $task->title }} </p>
                             <p><strong>Description:</strong> {{ $task->description }} </p>
                             <p><strong>Assigned To:</strong> {{ $task->employee->fullName }} </p>
