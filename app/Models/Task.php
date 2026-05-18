@@ -21,9 +21,9 @@ class Task extends Model
     ];
     protected $dates = ['deleted_at'];
 
-    public function getDueDateAttribute($value)
+    public function getDueDateAttribute()
     {
-        $result = Carbon::createFromFormat('Y-m-d', $value)->diffForHumans(now());
+        $result = Carbon::parse($this->attributes['dueDate'])->diffForHumans(now());
 
         return $result;
     }

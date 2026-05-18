@@ -31,13 +31,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="title">Nama Task</label>
-                                <input type="text" name="title" class="form-control" id="title"
+                                <input type="text" name="title" class="form-control" id="title" value="{{ old('title') }}"
                                     placeholder="Masukkan Nama Task">
                             </div>
 
                             <div class="form-group">
                                 <label for="des">Deskripsi</label>
-                                <textarea name="description" class="form-control" id="des" placeholder="Masukkan Deskripsi Task"></textarea>
+                                <textarea name="description" class="form-control" id="des" placeholder="Masukkan Deskripsi Task">{{ old('description') }}</textarea>
                             </div>
 
                             <div class="form-group">
@@ -45,14 +45,14 @@
                                 <select name="assignedTo" id="assignedTo" class="form-select">
                                     <option value="" disabled selected>-- Pilih Karyawan --</option>
                                     @foreach ($employees as $employee)
-                                        <option value="{{ $employee->id }}">{{ $employee->fullName }}</option>
+                                        <option value="{{ $employee->id }}" {{ old('assignedTo') == $employee->id ? 'selected' : '' }}>{{ $employee->fullName }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="dueDate">Due Date</label>
-                                <input type="date" name="dueDate" class="form-control" id="dueDate"
+                                <input type="date" name="dueDate" class="form-control" id="dueDate" value="{{ old('dueDate') }}"
                                     placeholder="Masukkan Due Date">
                             </div>
 
@@ -60,9 +60,9 @@
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-select">
                                     <option value="" disabled selected>-- Pilih Status --</option>
-                                    <option value="completed">Completed</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="on-progress">On-Progress</option>
+                                    <option value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+                                    <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="on-progress" {{ old('status') == 'on-progress' ? 'selected' : '' }}>On-Progress</option>
                                 </select>
                             </div>
 

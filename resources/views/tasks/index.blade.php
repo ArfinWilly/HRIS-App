@@ -42,7 +42,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Title</th>
-                                <th>Description</th>
                                 <th>Assigned To</th>
                                 <th>Due Date</th>
                                 <th>Status</th>
@@ -54,8 +53,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $task->title }}</td>
-                                    <td>{{ $task->description }}</td>
-                                    <td>{{ $task->employee->fullName }}</td>
+                                    <td>{{ $task->employee->fullName ?? '-' }}</td>
                                     <td>{{ $task->dueDate }}</td>
                                     <td>
                                         @if ($task->status == 'pending')

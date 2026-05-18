@@ -32,8 +32,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control" id="title" value="{{ old('title', $task->title) }}"
-                                    placeholder="Masukkan Title Task">
+                                <input type="text" name="title" class="form-control" id="title"
+                                    value="{{ old('title', $task->title) }}" placeholder="Masukkan Title Task">
                             </div>
 
                             <div class="form-group">
@@ -46,24 +46,29 @@
                                 <select name="assignedTo" id="assignedTo" class="form-select">
                                     <option value="" disabled selected>-- Pilih Karyawan --</option>
                                     @foreach ($employees as $employee)
-                                        <option value="{{ $employee->id }}" @if(old('assignedTo', $task->assignedTo) == $employee->id ) selected @endif>{{ $employee->fullName }}</option>
+                                        <option value="{{ $employee->id }}"
+                                            @if (old('assignedTo', $task->assignedTo) == $employee->id) selected @endif>{{ $employee->fullName }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="dueDate">Due Date</label>
-                                <input type="date" name="dueDate" class="form-control" id="dueDate" value="{{ old('dueDate', $task->dueDate) }}"
-                                    placeholder="Masukkan Due Date">
+                                <input type="date" name="dueDate" class="form-control" id="dueDate"
+                                    value="{{ old('dueDate', $task->dueDate_human) }}" placeholder="Masukkan Due Date">
                             </div>
 
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-select">
                                     <option value="" disabled selected>-- Pilih Status --</option>
-                                    <option value="completed" @if(old('status', $task->status) == 'completed') selected @endif>Completed</option>
-                                    <option value="pending" @if(old('status', $task->status) == 'pending') selected @endif>Pending</option>
-                                    <option value="on-progress" @if(old('status', $task->status) == 'on-progress') selected @endif>On-Progress</option>
+                                    <option value="completed" @if (old('status', $task->status) == 'completed') selected @endif>Completed
+                                    </option>
+                                    <option value="pending" @if (old('status', $task->status) == 'pending') selected @endif>Pending
+                                    </option>
+                                    <option value="on-progress" @if (old('status', $task->status) == 'on-progress') selected @endif>
+                                        On-Progress</option>
                                 </select>
                             </div>
 
