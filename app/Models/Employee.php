@@ -52,4 +52,9 @@ class Employee extends Model
     {
         return $this->hasMany(Leave::class, 'employeeId');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'employeeId');
+    }
 }
